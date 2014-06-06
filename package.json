@@ -1,0 +1,35 @@
+{
+  "name": "facebook",
+  "version": "0.0.1",
+  "description": "like facebook, Yes, you can know it.",
+  "main": "facebook.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/w-online/facebook.git"
+  },
+  "keywords": [
+    "facebook",
+    "network"
+  ],
+  "author": "weilin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/w-online/facebook/issues"
+  },
+  "homepage": "https://github.com/w-online/facebook",
+  "dependencies": {
+    "express": "^4.4.1",
+    "jade": "^1.3.1",
+    "socket.io": "^1.0.4",
+    "mongoose": "^3.8.12",
+    "cookie-parser": "^1.1.0",
+    "body-parser": "^1.3.0",
+    "serve-favicon": "^2.0.1",
+    "express-session": "^1.2.1",
+    "debug": "^1.0.0",
+    "morgan": "^1.1.1"
+  }
+}
