@@ -2,7 +2,7 @@
   "name": "facebook",
   "version": "0.0.1",
   "description": "like facebook, Yes, you can know it.",
-  "main": "facebook.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,7 +14,7 @@
     "facebook",
     "network"
   ],
-  "author": "weilin",
+  "author": "weilin 0zengweilin@163.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/w-online/facebook/issues"
