@@ -1,4 +1,4 @@
-define(['src/profile/profile', 'src/noMatch/noMatch'], function (ProfileView, noMatchView) {
+define(['src/profile/profile'], function (ProfileView) {
   var Router = Backbone.Router.extend({
     currentView: null,
     routes: {
@@ -13,9 +13,6 @@ define(['src/profile/profile', 'src/noMatch/noMatch'], function (ProfileView, no
     },
     profile: function () {
       this.changeView(new ProfileView);
-    },
-    noMatch: function () {
-      this.changeView(new noMatchView);
     }
   });
 

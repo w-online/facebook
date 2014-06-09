@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    title= title
+    link(rel="stylesheet", href="/css/common/global.css")
+    block css
+    script(src="/js/lib/require.js", data-main="/js/init")
+    block head
+  body
+    block content
+    block script
