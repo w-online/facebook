@@ -29,7 +29,11 @@ app.use('/', index);
 
 // user view
 var user = require('./routes/user');
-app.use('/user', user);
+app.use('/u', user);
+
+// captcha generate
+var captcha = require('./routes/captcha');
+app.use('/captcha', captcha);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

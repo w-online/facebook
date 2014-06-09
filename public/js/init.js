@@ -1,16 +1,19 @@
 require.config({
   paths: {
-    lib: '/js/lib',
-    src: '/js/src',
+    backbone: '/js/lib/backbone',
+    underscore: '/js/lib/underscore',
+    jquery: '/js/lib/jquery',
+    text: '/js/lib/require-text',
+    domReady: '/js/lib/domReady',
     tpl: '/tpl'
   },
   shim: {
-    'lib/backbone': ['lib/underscore', 'lib/jquery'],
-    'main': ['lib/backbone']
+    backbone: ['underscore', 'jquery'],
+    fb: ['backbone']
   }
 });
 
-require(['lib/domReady!', 'main'], function (doc, main) {
-  main();
+require(['domReady!', 'fb'], function (doc, fb) {
+  fb();
 });
 
