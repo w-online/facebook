@@ -8,6 +8,7 @@ router.get('/', function(req, res) {
 
 // register page
 router.post('/reg', function (req, res) {
+  
   var result = {msg:'注册成功'}
   res.send(result);
 });
