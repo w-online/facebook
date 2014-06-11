@@ -1,12 +1,12 @@
 define(['router'], function (Router) {
   function checkLogin (callback) {
-    $.ajax('/u/auth', {
+    $.ajax('/auth', {
       method: "GET",
       success: function() {
-        return callback(true);
+          callback(true);
       },
-      error: function(data) {
-        return callback(false);
+      error: function () {
+        callback(false);
       }
     });
   }

@@ -1,11 +1,11 @@
-define(['src/profile/profile', 'src/login/login', 'src/register/register', 'src/forgotpassword/forgotpassword'], function (ProfileView, LoginView, RegisterView, ForgotpasswordView) {
+define(['src/login/login', 'src/register/register', 'src/forgotpassword/forgotpassword', 'src/index/index'], function (LoginView, RegisterView, ForgotpasswordView, IndexView) {
   var Router = Backbone.Router.extend({
     currentView: null,
     routes: {
-      profile: 'profile',
       login: 'login',
       reg: 'register',
-      forgotpassword: 'forgotpassword'
+      forgotpassword: 'forgotpassword',
+      index: 'index'
     },
     changeView: function (view) {
       if(null !== this.currentView) {
@@ -14,8 +14,8 @@ define(['src/profile/profile', 'src/login/login', 'src/register/register', 'src/
       this.currentView = view;
       this.currentView.render();
     },
-    profile: function () {
-      this.changeView(new ProfileView);
+    index: function () {
+      this.changeView(new IndexView);
     },
     login: function () {
       this.changeView(new LoginView);

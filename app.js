@@ -7,7 +7,7 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-module.exports = app;
+var session = require('express-session');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,6 +19,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use(cookieParser());
+app.use(session({secret: 'facebook', store: new session.MemoryStore()}));
 
 // route section
 // --------------
@@ -26,10 +27,6 @@ app.use(cookieParser());
 // index view
 var index = require('./routes/index');
 app.use('/', index);
-
-// user view
-var user = require('./routes/user');
-app.use('/u', user);
 
 // captcha generate
 var captcha = require('./routes/captcha');
@@ -65,3 +62,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
+
+module.exports = app;

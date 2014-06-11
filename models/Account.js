@@ -1,5 +1,8 @@
-module.exports = function(config, mongoose, nodemailer) {
+module.exports = function(mongoose) {
   var crypto = require('crypto');
+
+  var nodemailer = require('nodemailer');
+  var mail = require('../config/mail');
 
   var AccountSchema = new mongoose.Schema({
     email:     { type: String, unique: true },
@@ -30,25 +33,25 @@ module.exports = function(config, mongoose, nodemailer) {
     var shaSum = crypto.createHash('sha256');
     shaSum.update(newpassword);
     var hashedPassword = shaSum.digest('hex');
-    Account.update({_id:accountId}, {$set: {password:hashedPassword}},{upsert:false},
+    Account.update({_id:accountId}, {$set: {password: hashedPassword}},{upsert:false},
       function changePasswordCallback(err) {
         console.log('Change password done for account ' + accountId);
     });
   };
 
   var forgotPassword = function(email, resetPasswordUrl, callback) {
-    var user = Account.findOne({email: email}, function findAccount(err, doc){
+    var user = Account.findOne({email: email}, function findAccount(err, user){
       if (err) {
         // Email address is not a valid user
         callback(false);
       } else {
-        var smtpTransport = nodemailer.createTransport('SMTP', config.mail);
-        resetPasswordUrl += '?account=' + doc._id;
+        var smtpTransport = nodemailer.createTransport('SMTP', mail);
+        resetPasswordUrl += '?account=' + user._id;
         smtpTransport.sendMail({
-          from: 'thisapp@example.com',
-          to: doc.email,
-          subject: 'SocialNet Password Request',
-          text: 'Click here to reset your password: ' + resetPasswordUrl
+          from: '735806789@qq.com',
+          to: user.email,
+          subject: 'Facebook Password Request',
+          html: 'Click here to reset your password: <a href="' + resetPasswordUrl + '" title="' + resetPasswordUrl + '">' + resetPasswordUrl +'</a>'
         }, function forgotPasswordResult(err) {
           if (err) {
             callback(false);
@@ -63,27 +66,23 @@ module.exports = function(config, mongoose, nodemailer) {
   var login = function(email, password, callback) {
     var shaSum = crypto.createHash('sha256');
     shaSum.update(password);
-    Account.findOne({email:email,password:shaSum.digest('hex')},function(err,doc){
-      callback(null!=doc);
+    Account.findOne({email:email,password:shaSum.digest('hex')},function(err, user){
+      callback(null != user);
     });
   };
 
-  var register = function(email, password, firstName, lastName) {
+  var register = function(email, password) {
     var shaSum = crypto.createHash('sha256');
     shaSum.update(password);
 
     console.log('Registering ' + email);
     var user = new Account({
       email: email,
-      name: {
-        first: firstName,
-        last: lastName
-      },
       password: shaSum.digest('hex')
     });
     user.save(registerCallback);
     console.log('Save command was sent');
-  }
+  };
 
   return {
     register: register,
